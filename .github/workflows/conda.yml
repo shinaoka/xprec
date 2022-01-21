@@ -15,7 +15,7 @@ jobs:
     - name: Install dependencies
       run: |
         # $CONDA is an environment variable pointing to the root of the miniconda directory
-        $CONDA/bin/conda install gcc numpy cython -y
+        $CONDA/bin/conda install numpy cython -y
     - name: Install via setup.py
       run: |
         $CONDA/bin/python3 setup.py bdist_wheel
