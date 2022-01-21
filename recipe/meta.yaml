@@ -1,0 +1,37 @@
+{% set data = load_setup_py_data(setup_file='../setup.py', from_recipe_dir=True) %}
+{% set name = "xprec" %}
+{% set version = data.get("version") %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: af77c154ae6e8102e29c3351daed41fb23c890b6ed9e756f989fd42fdbd75822
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - numpy >=1.16
+    - pip
+    - python
+  run:
+    - numpy >=1.16
+    - python
+
+test:
+  imports:
+    - xprec
+
+about:
+  home: "https://github.com/tuwien-cms/xprec"
+  license: MIT
+  summary: "xprec precision numpy extension"
+
+extra:
+  recipe-maintainers:
+    - shinaoka
