@@ -1,10 +1,16 @@
 name: Python Package Using Anaconda
 
-on: [push]
+#on: [push]
+# Publish only when a (published) GitHub Release is created
+on:
+  #push:
+  release:
+    types:
+      - published
 
 jobs:
   build:
-    if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/v')
+    #if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/v')
     runs-on: ${{ matrix .os }}
     strategy:
       matrix:
