@@ -1,4 +1,5 @@
 # Setup script - embracing the setuptools madness.
+
 #
 # Copyright (C) 2021 Markus Wallerberger and others
 # SPDX-License-Identifier: MIT
