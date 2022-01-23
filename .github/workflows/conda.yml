@@ -30,7 +30,7 @@ jobs:
     #    $CONDA/bin/python3 setup.py bdist_wheel
     - name: Bulid and upload
       env:
-        ANACONDA_TOKEN: ${{github.ANACONDA_TOKEN }}
+        ANACONDA_TOKEN: ${{secrets.ANACONDA_TOKEN}}
       run: |
         conda config --set anaconda_upload yes
         conda build recipe
