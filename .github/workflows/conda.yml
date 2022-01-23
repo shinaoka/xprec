@@ -15,7 +15,8 @@ jobs:
     - name: Install dependencies
       run: |
         # $CONDA is an environment variable pointing to the root of the miniconda directory
-        $CONDA/bin/conda install numpy cython -y
+        $CONDA/bin/conda update conda
+        $CONDA/bin/conda install numpy cython conda-build -y
     #- name: Install via setup.py
     #  run: |
     #    $CONDA/bin/python3 setup.py bdist_wheel
@@ -26,4 +27,4 @@ jobs:
       env:
         ANACONDA_TOKEN: ${{github.ANACONDA_TOKEN }}
       run: |
-        anaconda upload /opt/conda/conda-bld/linux-64/xprec-*.tar.bz2
+        $CONDA/bin/anaconda upload /opt/conda/conda-bld/linux-64/xprec-*.tar.bz2
