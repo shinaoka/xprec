@@ -8,23 +8,22 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.8
+    - name: Set up Python
       uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
-    - name: Install dependencies
-      run: |
-        # $CONDA is an environment variable pointing to the root of the miniconda directory
-        $CONDA/bin/conda update conda
-        $CONDA/bin/conda install numpy cython conda-build -y
+    - name: Set up Conda
+      uses: s-weigand/setup-conda@v1
+    #- name: Install dependencies
+      #run: |
+        #conda update conda
+        #conda install numpy cython conda-build -y
     #- name: Install via setup.py
     #  run: |
     #    $CONDA/bin/python3 setup.py bdist_wheel
     - name: Bulid
       run: |
-        $CONDA/bin/conda build recipe
+        conda build recipe
     - name: Upload
       env:
         ANACONDA_TOKEN: ${{github.ANACONDA_TOKEN }}
       run: |
-        $CONDA/bin/anaconda upload /opt/conda/conda-bld/linux-64/xprec-*.tar.bz2
+        anaconda upload /opt/conda/conda-bld/linux-64/xprec-*.tar.bz2
