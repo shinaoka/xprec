@@ -1,11 +1,4 @@
-name: Python Package Using Anaconda
-
-#on: [push]
-# Publish only when a (published) GitHub Release is created
-#on:
-  #release:
-    #types:
-      #- published
+name: Build and upload conda packages
 
 # Triggered a new tag starting with "v" is pushed
 on:
@@ -15,16 +8,11 @@ on:
 
 jobs:
   build:
-    #if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/v')
     runs-on: ${{ matrix .os }}
     strategy:
       matrix:
-        #os: [ubuntu-latest, windows-latest, macOS-latest]
-        #python-version: [3.6, 3.7, 3.8]
-        #os: [ubuntu-latest]
-        #os: [macOS-latest]
-        os: [windows-latest]
-        python-version: [3.6]
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+        python-version: [3.6, 3.7, 3.8, 3.9, 3.10]
 
     steps:
     - uses: actions/checkout@v2
