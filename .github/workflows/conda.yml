@@ -9,7 +9,8 @@ jobs:
       matrix:
         #os: [ubuntu-latest, windows-latest, macOS-latest]
         #python-version: [3.6, 3.7, 3.8]
-        os: [ubuntu-latest]
+        #os: [ubuntu-latest]
+        os: [macOS-latest]
         python-version: [3.6]
 
     steps:
@@ -21,21 +22,12 @@ jobs:
       with:
         update-conda: true
         python-version: ${{ matrix.python-version }}
-        #conda-channels: anaconda, conda-forge
     - name: Install dependencies
       run: |
         conda install conda-build anaconda-client -y
-    #- name: Install via setup.py
-    #  run: |
-    #    $CONDA/bin/python3 setup.py bdist_wheel
     - name: Bulid and upload
       env:
         ANACONDA_API_TOKEN: ${{secrets.ANACONDA_TOKEN}}
       run: |
         conda config --set anaconda_upload yes
         conda build recipe
-    #- name: Upload
-      #env:
-        #ANACONDA_TOKEN: ${{github.ANACONDA_TOKEN }}
-      #run: |
-        #anaconda upload /opt/conda/conda-bld/linux-64/xprec-*.tar.bz2
