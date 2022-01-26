@@ -14,13 +14,15 @@ build:
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
+  buid:
+    - python {{ python }}
+    - numpy {{ numpy }}
   host:
-    - numpy >=1.16
-    - pip
-    - python
+    - python {{ python }}
+    - numpy {{ numpy }}
   run:
-    - numpy >=1.16
-    - python
+    - python {{ python }}
+    - numpy {{ numpy }}
 
 test:
   imports:
